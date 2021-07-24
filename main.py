@@ -52,10 +52,7 @@ async def earthquake():
 
     async def goTo(how, now):
         for ch in data.channels:
-            if how == API:
-                await sosIn(bot.get_channel(ch), b, data)
-            elif how == API2:
-                await sosIn(bot.get_channel(ch), s, data)
+            await sosIn(bot.get_channel(ch),({API: b,API2: s}[how]), data)
         with open(data.checkFile, 'w') as outfile:
             json.dump(now, outfile, ensure_ascii=False, indent=4)
 
@@ -70,4 +67,5 @@ async def earthquake():
     if file[API2] != _API2:
         file[API2] = _API2
         await goTo(API2, file)
+
 bot.run(data.token)
