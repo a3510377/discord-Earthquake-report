@@ -55,7 +55,7 @@ async def earthquake():
             if how == API:
                 await sosIn(bot.get_channel(ch), b, data)
             elif how == API2:
-                await sosIn2(bot.get_channel(ch), s, data)
+                await sosIn(bot.get_channel(ch), s, data)
         with open(data.checkFile, 'w') as outfile:
             json.dump(now, outfile, ensure_ascii=False, indent=4)
 
