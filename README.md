@@ -11,6 +11,7 @@
 token="token"
 APIToken=""
 ```
+( 找不到中央氣象局 Token 沒關西，你啟動後如果APIToken為空會發給你申請網址
 
 你將於 main.py 文件中的第 13 行看到
 
