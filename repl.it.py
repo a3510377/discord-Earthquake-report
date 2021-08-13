@@ -12,25 +12,20 @@ load_dotenv()
 bot = commands.Bot(command_prefix="!")
 data = sets(
     os.getenv("token"), APIToken=os.getenv("APIToken"))
-
-
-def setup():
-    try:
-        open(data.checkFile)
-    except:
-        with open(data.checkFile, "w") as outfile:
-            json.dump({}, outfile, ensure_ascii=False, indent=4)
-            print("建立 check.json 完成")
+JsonUrl = "https://api.jsonstorage.net/v1/json/" + os.getenv("JsonUrl")
+JsonUrlToken = os.getenv("JsonUrlToken")
 
 
 @bot.event
 async def on_ready():
+    if requests.get(f"{JsonUrl}").status_code >= 300:
+        print("請申請一個API https://app.jsonstorage.net/")
+        return bot.close()
     print("-"*15)
     print(bot.user.name)
     print(bot.user.id)
     print(bot.user)
     print("-"*15)
-    setup()
     if data.APIToken:
         earthquake.start()
         print("地震報告啟動")
@@ -53,11 +48,9 @@ async def earthquake():
     async def goTo(how, now):
         for ch in data.channels:
             await sosIn(bot.get_channel(ch), ({API: b, API2: s}[how]), data)
-        with open(data.checkFile, 'w') as outfile:
-            json.dump(now, outfile, ensure_ascii=False, indent=4)
+        requests.put(f"{JsonUrl}?apiKey={JsonUrlToken}", json=now)
 
-    with open(data.checkFile, "r") as file:
-        file = json.load(file)
+    file = requests.get(f"{JsonUrl}").json() or {}
     for i in [API, API2]:
         if not file.get(i):
             file[i] = ""
