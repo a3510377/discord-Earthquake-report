@@ -29,9 +29,11 @@ JsonUrl="f351da5d-ba45-4f22-8a33-ec2970b0198f"
 JsonUrlToken="cc041cf0-69ef-49c0-8caa-5016330505b4"
 ```
 
+並使用 repl.it.py 為主檔
+
 ---
 
-你將於 main.py 文件中的第 13 行看到
+你將於 main.py or repl.it.py 文件中的第 13 行看到
 
 ```py
 data = sets(
