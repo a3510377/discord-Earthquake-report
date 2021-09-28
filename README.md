@@ -63,6 +63,6 @@ pip install -r -U package.txt
 
 ### 開發人員
 
-<a href="https://github.com/a3510377">
+<a href="https://github.com/a3510377" style="border-radius:50%">
     <img width="100px" src="https://cdn.discordapp.com/avatars/688181698822799414/f6534feffc3f15cf439cb2fdd579aab5.webp?size=128">
 </a>
